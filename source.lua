@@ -9,11 +9,32 @@ local module = table.create(1)
 module.__index = module
 
 
+local console_message =
+[[
+
+ ██████╗██╗     ██╗███╗   ██╗████████╗    ██╗  ██╗ █████╗ ███████╗    ██████╗ ███████╗███████╗███╗   ██╗    ██╗███╗   ██╗     ██╗███████╗ ██████╗████████╗███████╗██████╗ ██╗
+██╔════╝██║     ██║████╗  ██║╚══██╔══╝    ██║  ██║██╔══██╗██╔════╝    ██╔══██╗██╔════╝██╔════╝████╗  ██║    ██║████╗  ██║     ██║██╔════╝██╔════╝╚══██╔══╝██╔════╝██╔══██╗██║
+██║     ██║     ██║██╔██╗ ██║   ██║       ███████║███████║███████╗    ██████╔╝█████╗  █████╗  ██╔██╗ ██║    ██║██╔██╗ ██║     ██║█████╗  ██║        ██║   █████╗  ██║  ██║██║
+██║     ██║     ██║██║╚██╗██║   ██║       ██╔══██║██╔══██║╚════██║    ██╔══██╗██╔══╝  ██╔══╝  ██║╚██╗██║    ██║██║╚██╗██║██   ██║██╔══╝  ██║        ██║   ██╔══╝  ██║  ██║╚═╝
+╚██████╗███████╗██║██║ ╚████║   ██║       ██║  ██║██║  ██║███████║    ██████╔╝███████╗███████╗██║ ╚████║    ██║██║ ╚████║╚█████╔╝███████╗╚██████╗   ██║   ███████╗██████╔╝██╗
+ ╚═════╝╚══════╝╚═╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═══╝    ╚═╝╚═╝  ╚═══╝ ╚════╝ ╚══════╝ ╚═════╝   ╚═╝   ╚══════╝╚═════╝ ╚═╝
+                                                                                                                                                                             
+]]
+warn()
+
 function module:FindChild(Instance, Instance_Name, Recursively)
    local Parent, Object, FromDescendants = Instance, nil, Recursively == true or false
-   for _, v in next, Parent:GetDescendants() do
-       if v.Name == Instance_Name then
-          Object = v
+   if FromDescendants then
+       for _, v in next, Parent:GetDescendants() do
+           if v.Name == Instance_Name then
+              Object = v
+           end
+       end
+    else
+       for _, v in next, Parent:GetDescendants() do
+          if v.Name == Instance_Name then
+             Object = v
+          end
        end
    end
    return Object, typeof(Object) == "Instance" or Object ~= nil
@@ -32,6 +53,7 @@ end
 
 function module:Teleport(id)
     TeleportService:Teleport(id or game.PlaceId)
+    return module
 end
 
 
