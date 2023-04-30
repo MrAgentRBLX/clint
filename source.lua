@@ -20,7 +20,7 @@ local console_message =
  ╚═════╝╚══════╝╚═╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═══╝    ╚═╝╚═╝  ╚═══╝ ╚════╝ ╚══════╝ ╚═════╝   ╚═╝   ╚══════╝╚═════╝ ╚═╝
                                                                                                                                                                              
 ]]
-warn()
+warn(console_message)
 
 function module:FindChild(Instance, Instance_Name, Recursively)
    local Parent, Object, FromDescendants = Instance, nil, Recursively == true or false
